@@ -58,3 +58,9 @@ fetch('https://mateoedutec.pythonanywhere.com/')
     createChart(list);
 })
 .catch(error => console.error(error))
+
+
+function send_data(){
+    fetch('https://mateoedutec.pythonanywhere.com/post/')
+    .then(response => console.log(response))
+}
