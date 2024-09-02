@@ -61,7 +61,21 @@ fetch('https://mateoedutec.pythonanywhere.com/')
 
 
 function send_data(){
-    fetch('https://mateoedutec.pythonanywhere.com/post/', {method:'POST'})
+    const userName = document.getElementById("input_name");
+    let userData = document.getElementById("selection");
+    userData = userData.value == "true" ? 1 : 0;
+    console.log(userName.value);
+    // console.log(typeof(!!userData.value));
+    // console.log(!!userData.value);
+    fetch('https://mateoedutec.pythonanywhere.com/post/', 
+        {
+            method:'POST',
+            headers:{"Content-Type":"application/json"},
+            body:JSON.stringify({
+                name:userName.value,
+                data:!!userData
+            })
+        })
     .then(response => {
         response.json()
         .then(data=>console.log(data))
