@@ -61,6 +61,6 @@ fetch('https://mateoedutec.pythonanywhere.com/')
 
 
 function send_data(){
-    fetch('https://mateoedutec.pythonanywhere.com/post/')
+    fetch('https://mateoedutec.pythonanywhere.com/post/', 'POST')
     .then(response => console.log(response))
 }
