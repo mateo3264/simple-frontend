@@ -1,0 +1,133 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login/Signup</title>
+    <style>
+        body { font-family: Arial, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .container { background: #f0f0f0; padding: 20px; border-radius: 5px; }
+        input, button { display: block; margin: 10px 0; padding: 5px; width: 200px; }
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="loginForm">
+            <h2>Login</h2>
+            <input type="text" id="loginUsername" placeholder="Username" required>
+            <input type="password" id="loginPassword" placeholder="Password" required>
+            <button onclick="login()">Login</button>
+            <p>Don't have an account? <a href="#" onclick="toggleForms()">Sign up</a></p>
+        </div>
+        <div id="signupForm" class="hidden">
+            <h2>Sign Up</h2>
+            <input type="email" id="signupEmail" placeholder="Email" required>
+            <input type="password" id="signupPassword" placeholder="Password" required>
+            <button onclick="signup()">Sign Up</button>
+            <p>Already have an account? <a href="#" onclick="toggleForms()">Login</a></p>
+        </div>
+    </div>
+
+    <script>
+        function toggleForms() {
+            document.getElementById('loginForm').classList.toggle('hidden');
+            document.getElementById('signupForm').classList.toggle('hidden');
+        }
+
+        function login() {
+            console.log('lgo')
+            const username = document.getElementById('loginUsername').value;
+            const password = document.getElementById('loginPassword').value;
+            console.log(username);
+            console.log(password);
+            fetch('https://mateoedutec.pythonanywhere.com/login/',{
+                method:'POST',
+                headers:{
+                    'Content-Type':'application/json'
+                },
+                body:JSON.stringify({
+                    username:username,
+                    password:password
+                })
+                
+            })
+            .then(
+                response => 
+                    response.json())
+                    .then( data => {
+                        
+                        const token = data.token;
+                        console.log('token');
+                        console.log(token);
+                        if (username && password) {
+                            localStorage.setItem('user', JSON.stringify({ username }));
+                            localStorage.setItem('token', JSON.stringify({ token }));
+                            localStorage.setItem('password', JSON.stringify({ password }));
+                            window.location.href = '../index.html';
+                        } else {
+                            alert('Please enter both email and password');
+                        }
+                    }
+
+                    )
+                
+            
+            // Here you would typically send a request to your server to authenticate
+            // For this example, we'll just check if the email and password are not empty
+            
+        }
+
+        function signup() {
+            const email = document.getElementById('signupEmail').value;
+            const password = document.getElementById('signupPassword').value;
+            // Here you would typically send a request to your server to create a new account
+            // For this example, we'll just check if the email and password are not empty
+            if (email && password) {
+                localStorage.setItem('user', JSON.stringify({ email }));
+                window.location.href = '../index.html';
+            } else {
+                alert('Please enter both email and password');
+            }
+        }
+    </script>
+</body>
+</html>
+
+<!-- main.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Page</title>
+    <style>
+        body { font-family: Arial, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .container { background: #f0f0f0; padding: 20px; border-radius: 5px; text-align: center; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to the Main Page</h1>
+        <p id="userEmail"></p>
+        <button onclick="logout()">Logout</button>
+    </div>
+
+    <script>
+        window.onload = function() {
+            const user = JSON.parse(localStorage.getItem('user'));
+            if (user && user.email) {
+                document.getElementById('userEmail').textContent = `Logged in as: ${user.email}`;
+            } else {
+                window.location.href = 'login.html';
+            }
+        }
+
+        // function logout() {
+        //     localStorage.removeItem('user');
+        //     window.location.href = 'login.html';
+        // }
+    </script>
+</body>
+</html> -->
