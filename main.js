@@ -1,4 +1,19 @@
 
+function checkLogin(){
+    //ToDo: Improve to check if token hasn't expired
+    const token_obj = JSON.parse(localStorage.getItem('token'));
+
+    try{
+        const token = token_obj['token'];
+    }catch{
+        window.location.href = './pages/login.html';
+    }
+
+    }
+
+
+checkLogin();
+
 function setFocus(){
 
     document.getElementById('selection').focus();
