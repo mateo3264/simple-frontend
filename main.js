@@ -99,10 +99,10 @@ function initMainPage(){
 initMainPage()
 
 function send_data(){
-    const userName = document.getElementById("input_name");
+    //const userName = document.getElementById("input_name");
     let userData = document.getElementById("selection");
     userData = userData.value == "true" ? 1 : 0;
-    console.log(userName.value);
+    //console.log(userName.value);
     // console.log(typeof(!!userData.value));
     // console.log(!!userData.value);
     fetch('https://mateoedutec.pythonanywhere.com/post/', 
@@ -113,7 +113,7 @@ function send_data(){
                 
             },
             body:JSON.stringify({
-                name:userName.value,
+                name:JSON.parse(localStorage.getItem('user'))['username'],
                 data:!!userData
             })
         })
