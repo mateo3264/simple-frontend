@@ -8,10 +8,19 @@ function getTasks(){
                     data.forEach((task)=>{
                         const ul = document.getElementById("unli");
                         const li = document.createElement("li");
-                        const input = document.createElement("input");
-                        input.type = "checkbox";
+                        
+                        const completed = document.createElement("input");
+                        
+                        //set if completed
+                        completed.type = "checkbox";
+                        completed.value = task.completed;
+                        console.log(task.completed);
+                        //set task
                         li.appendChild(document.createTextNode(task.task));
-                        li.appendChild(input);
+                        //set priority
+                        
+                        li.appendChild(document.createTextNode(task.priority));
+                        li.appendChild(completed);
                         ul.appendChild(li);
                         
                     })
