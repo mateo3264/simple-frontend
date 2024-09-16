@@ -25,6 +25,7 @@
         <div id="signupForm" class="hidden">
             <h2>Sign Up</h2>
             <input type="email" id="signupEmail" placeholder="Email" required>
+            <input type="text" id="signupUsername" placeholder="User" required>
             <input type="password" id="signupPassword" placeholder="Password" required>
             <button onclick="signup()">Sign Up</button>
             <p>Already have an account? <a href="#" onclick="toggleForms()">Login</a></p>
@@ -83,17 +84,51 @@
         }
 
         function signup() {
+            const username = document.getElementById('signupUsername').value;
             const email = document.getElementById('signupEmail').value;
             const password = document.getElementById('signupPassword').value;
+            console.log(username);
+            console.log(email);
+            console.log(password);
             // Here you would typically send a request to your server to create a new account
             // For this example, we'll just check if the email and password are not empty
-            if (email && password) {
-                localStorage.setItem('user', JSON.stringify({ email }));
-                window.location.href = '../index.html';
-            } else {
-                alert('Please enter both email and password');
+            fetch('https://mateoedutec.pythonanywhere.com/signup/',{
+                method:'POST',
+                headers:{
+                    'Content-Type':'application/json'
+                },
+                body:JSON.stringify({
+                    username:username,
+                    password:password,
+                    email:email
+                })
+                
+            })
+            .then(
+                response => 
+                    response.json())
+                    .then( data => {
+                        
+                        const token = data.token;
+                        console.log('token');
+                        console.log(token);
+                        
+                        localStorage.setItem('user', JSON.stringify({ username }));
+                        localStorage.setItem('token', JSON.stringify({ token }));
+                        localStorage.setItem('password', JSON.stringify({ password }));
+                        //window.location.href = '../index.html';
+                    
+                    }
+
+                    )
+            // if (username && email && password) {
+            //     localStorage.setItem('user', JSON.stringify({ username }));
+            //     localStorage.setItem('password', JSON.stringify({ password }));
+            //     window.location.href = '../index.html';
+            // } else {
+            //     alert('Please enter both email and password');
             }
-        }
+        
     </script>
 </body>
 </html>
