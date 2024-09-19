@@ -21,6 +21,8 @@ function add_task(){
     cb.type = "checkbox";
     const number_of_li_in_ul = ul.getElementsByTagName("li").length;
     cb.id = "completed"+number_of_li_in_ul;
+    cb.className = "form-check-input me-1";
+    li.className = "list-group-item";
     li.appendChild(document.createTextNode(userInput.value));
     li.appendChild(cb);
     li.appendChild(document.createTextNode(priority));
