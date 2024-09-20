@@ -11,7 +11,8 @@ function add_task(){
         body:JSON.stringify({
             task:userInput.value,
             completed:false,
-            priority:priority[0].toUpperCase()
+            priority:priority[0].toUpperCase(),
+            user:JSON.parse(localStorage.getItem('user_id'))['user_id']
         })
     })
     const divListGroup = document.getElementsByClassName("list-group")[0];

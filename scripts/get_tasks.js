@@ -1,7 +1,8 @@
 
 
 function getTasks(){
-    fetch("https://mateoedutec.pythonanywhere.com/get_tasks/")
+    const user_id = JSON.parse(localStorage.getItem('user_id'))['user_id'];
+    fetch(`https://mateoedutec.pythonanywhere.com/get_tasks/${user_id}/`)
     .then(
             response=>
                 response.json()
@@ -32,7 +33,7 @@ function getTasks(){
                         completed.type = "checkbox";
                         completed.className = "form-check-input me-1";
                         completed.value = task.completed;
-                        console.log(task.completed);
+                        
                         //set task
                         divTag.appendChild(completed);
                         divTag.appendChild(taskLabel);
