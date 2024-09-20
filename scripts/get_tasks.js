@@ -1,3 +1,5 @@
+
+
 function getTasks(){
     fetch("https://mateoedutec.pythonanywhere.com/get_tasks/")
     .then(
@@ -8,6 +10,7 @@ function getTasks(){
                     const divListGroup = document.getElementsByClassName("list-group")[0];
                     // ul = document.getElementById("unli");
                     data.forEach((task)=>{
+                        
                         
                         const aTag = document.createElement("a");
                         aTag.className = "list-group-item list-group-item-action";

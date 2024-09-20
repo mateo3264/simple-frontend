@@ -14,19 +14,26 @@ function add_task(){
             priority:priority[0].toUpperCase()
         })
     })
-    const ul = document.getElementById("unli");
-    const li = document.createElement("li");
+    const divListGroup = document.getElementsByClassName("list-group")[0];
+    
+    const aTag = document.createElement("a");
+    aTag.className = "list-group-item list-group-item-action";
+    aTag.href = "#";
+    aTag.ariaCurrent = true;
+    const divTag = document.createElement("div");
+    divTag.className = "d-flex w-100 align-items-center";
+
     const cb = document.createElement("input");
     
     cb.type = "checkbox";
-    const number_of_li_in_ul = ul.getElementsByTagName("li").length;
-    cb.id = "completed"+number_of_li_in_ul;
+    const number_of_a_in_div = divListGroup.getElementsByTagName("a").length;
+    cb.id = "completed"+number_of_a_in_div;
     cb.className = "form-check-input me-1";
-    li.className = "list-group-item";
-    li.appendChild(document.createTextNode(userInput.value));
-    li.appendChild(cb);
-    li.appendChild(document.createTextNode(priority));
-    ul.appendChild(li);
+    
+    aTag.appendChild(document.createTextNode(userInput.value));
+    aTag.appendChild(cb);
+    aTag.appendChild(document.createTextNode(priority));
+    divListGroup.appendChild(aTag);
     userInput.value = "";
     userInput.focus();
     
