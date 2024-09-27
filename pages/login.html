@@ -31,6 +31,7 @@
             <p>Already have an account? <a href="#" onclick="toggleForms()">Login</a></p>
         </div>
         <a href="todo.html">Go to ToDo</a>
+        <a href="./pages/questions.html">Questions</a>
     </div>
     
 
@@ -61,7 +62,8 @@
                 response => 
                     response.json())
                     .then( data => {
-                        
+                        console.log('data');
+                        console.log(data);
                         const token = data.token;
                         console.log('token');
                         console.log(token);
