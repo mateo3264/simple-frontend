@@ -31,7 +31,7 @@ function get_questions(){
                     // const li = document.createElement("li");
                     const p = document.createElement("p");
                     p.innerHTML = item.question;
-                    p.className = "d-block w-100";
+                    // p.className = "d-block w-100";
                     p.style.color = "black";
                     const user_input = document.createElement("input");
                     const button = document.createElement("button");
