@@ -17,7 +17,7 @@ function get_questions(){
                     const divChild = document.createElement("div");
                     divChild.id = "li-container-" + index;
                     const divChild2 = document.createElement("div");
-                    divChild2.className = "carousel-caption d-none d-md-block";
+                    divChild2.className = "carousel-caption d-block";
                     if (index === 0){
                     
                         divChild.className = "carousel-item active";
