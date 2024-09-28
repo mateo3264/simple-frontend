@@ -33,6 +33,8 @@ function get_questions(){
                     p.innerHTML = item.question;
                     // p.className = "d-block w-100";
                     p.style.color = "black";
+                    p.style.fontSize = "16px"
+                    p.style.padding = "10px"
                     const user_input = document.createElement("input");
                     const button = document.createElement("button");
                     const br = document.createElement("br");
