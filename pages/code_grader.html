@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeMirror Example</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/codemirror.min.css">
+</head>
+<body>
+    <p>Make a for loop from 0 to nine and print the sum of the numbers</p>
+    <textarea id="code" name="code">
+
+    </textarea>
+    <button onclick="printCode();">print</button>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/mode/python/python.min.js"></script>
+    <script>
+        var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+            lineNumbers: true,
+            mode: "python",
+            indentUnit: 4,
+            tabSize: 4,
+            matchBrackets: true
+        });
+
+        function printCode(){
+            const userCode = editor.getValue();
+
+            console.log(userCode);
+            fetch("https://mateoedutec.pythonanywhere.com/get_grade/", {
+                method:"POST",
+                headers:{
+                    "Content-Type":"application/json"
+                },
+                body:JSON.stringify({
+                    "code":userCode
+                })
+            })
+            .then(
+                response=>response.json()
+                .then(
+                    data=>console.log(data)
+                )
+            )
+        }
+    </script>
+
+</body>
+</html>
